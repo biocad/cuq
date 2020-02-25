@@ -11,3 +11,4 @@ class Conan(ConanFile):
     default_options = "shared=True"
     generators = "cmake_find_package"
     exports_sources="*"
+
