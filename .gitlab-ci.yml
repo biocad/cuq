@@ -1,6 +1,6 @@
 stages:
-    - build
-    - deploy 
+  - build
+  - deploy 
     
 build-test:
   extends: .cuda-build-test
@@ -23,3 +23,4 @@ include:
   - project: 'biocad/bcd-ci-common'
     ref: master
     file: '/build/cuda/cuda-deploy.yaml'
+  
