@@ -1,8 +1,6 @@
 from conans import ConanFile, CMake
 
 class Conan(ConanFile):
-    name = "cuq"
-    # version = "0.12.0"
     url = "https://github.com/biocad/cuq"
     description = "CUDA multi-GPU concurrent tasks queue"
     settings = "os", "build_type", "arch", "compiler", "CUDA"
