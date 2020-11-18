@@ -22,7 +22,7 @@ class Conan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["cuq"]
-        self.cpp_info.system_libs = ["cudart", "nvidia-ml", "stdc++"]
+        self.cpp_info.system_libs = ["nvidia-ml", "cudart", "stdc++"]
 
     def deploy(self):
         self.copy("*", dst="include", src="include")
