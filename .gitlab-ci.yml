@@ -1,8 +1,17 @@
 stages:
   - build
 
-build-test-upload:
+build-test-upload-branches:
   extends: .cuda-build-test-upload
+  only:
+    - branches
+  except:
+    - master
+
+build-test-upload-tags:
+  extends: .cuda-build-test-upload
+  only:
+    - tags
 
 include:
   - project: 'biocad/bcd-ci-common'
