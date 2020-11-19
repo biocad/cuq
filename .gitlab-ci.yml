@@ -1,14 +1,14 @@
 stages:
   - build
 
-build-test-upload-branches:
+build-test-upload-branch:
   extends: .cuda-build-test-upload
   only:
     - branches
   except:
     - master
 
-build-test-upload-tags:
+build-test-upload-tag:
   extends: .cuda-build-test-upload
   only:
     - tags
