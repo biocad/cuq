@@ -22,7 +22,10 @@ class Conan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["cuq"]
+        # users will be able to link statically with our library
+        # but this requires the following system libraries
         self.cpp_info.system_libs = ["cudart", "nvidia-ml", "stdc++"]
+        self.cpp_info.libdirs.append("/usr/local/cuda/lib64")
 
     def deploy(self):
         self.copy("*", dst="include", src="include")

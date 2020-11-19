@@ -4,14 +4,7 @@ stages:
 build-test-upload:
   extends: .cuda-build-test-upload
 
-build-memcheck-test:
-  extends: .cuda-build-memcheck-test
-
 include:
   - project: 'biocad/bcd-ci-common'
     ref: akhoroshev/update-cuda-pipelines
     file: '/build/cuda/build-test-upload.yaml'
-
-  - project: 'biocad/bcd-ci-common'
-    ref: akhoroshev/update-cuda-pipelines
-    file: '/build/cuda/build-memcheck-test.yaml'
