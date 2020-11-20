@@ -1,26 +1,19 @@
 stages:
   - build
-  - deploy 
-    
-build-test:
-  extends: .cuda-build-test
 
-build-test-upload:
+build-test-upload-branch:
   extends: .cuda-build-test-upload
+  only:
+    - branches
+  except:
+    - master
 
-deploy-hpc:
-  extends: .cuda-deploy-hpc
-  
+build-test-upload-tag:
+  extends: .cuda-build-test-upload
+  only:
+    - tags
+
 include:
   - project: 'biocad/bcd-ci-common'
-    ref: master
-    file: '/build/cuda/build-test.yaml'
-  
-  - project: 'biocad/bcd-ci-common'
-    ref: master
+    ref: akhoroshev/update-cuda-pipelines
     file: '/build/cuda/build-test-upload.yaml'
-  
-  - project: 'biocad/bcd-ci-common'
-    ref: master
-    file: '/build/cuda/cuda-deploy.yaml'
-  

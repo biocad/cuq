@@ -1,14 +1,32 @@
-from conans import ConanFile
+from conans import ConanFile, CMake
+
 
 class Conan(ConanFile):
-    python_requires = "BcdConanRecipe/v1.0.0@biocad/biocad"
-    python_requires_extend ="BcdConanRecipe.BcdConanRecipe"
-    name = "cuq"
     url = "https://github.com/biocad/cuq"
     description = "CUDA multi-GPU concurrent tasks queue"
-    settings = "os", "build_type", "arch","compiler","CUDA"
-    options = {"shared": [True, False]}
-    default_options = "shared=True"
-    generators = "cmake_find_package"
-    exports_sources="*"
+    settings = "os", "build_type", "arch", "compiler", "CUDA"
+    generators = "cmake"
+    exports_sources = "*"
 
+    def build(self):
+        cmake = CMake(self)
+        cmake.configure()
+        cmake.build()
+        cmake.parallel = False
+        cmake.test()
+
+    def package(self):
+        cmake = CMake(self)
+        cmake.configure()
+        cmake.install()
+
+    def package_info(self):
+        self.cpp_info.libs = ["cuq"]
+        # users will be able to link statically with our library
+        # but this requires the following system libraries
+        self.cpp_info.system_libs = ["cudart", "nvidia-ml", "stdc++"]
+        self.cpp_info.libdirs.append("/usr/local/cuda/lib64")
+
+    def deploy(self):
+        self.copy("*", dst="include", src="include")
+        self.copy("*", dst="lib", src="lib")
