@@ -15,5 +15,5 @@ build-test-upload-tag:
 
 include:
   - project: 'biocad/bcd-ci-common'
-    ref: akhoroshev/update-cuda-pipelines
+    ref: master
     file: '/build/cuda/build-test-upload.yaml'
