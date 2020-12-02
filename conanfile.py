@@ -13,7 +13,7 @@ class Conan(ConanFile):
         cmake.configure()
         cmake.build()
         cmake.parallel = False
-        cmake.test()
+        cmake.test(args=["--", 'ARGS=--output-on-failure'])
 
     def package(self):
         cmake = CMake(self)
