@@ -7,6 +7,8 @@ build-test-upload-branch:
     - branches
   except:
     - master
+  before_script:
+    - apt-get update && apt-get install -y --no-install-recommends strace
 
 build-test-upload-tag:
   extends: .cuda-build-test-upload
