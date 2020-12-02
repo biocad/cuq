@@ -12,8 +12,9 @@ class Conan(ConanFile):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
-        cmake.parallel = False
-        cmake.test(args=["--", 'ARGS=--output-on-failure'])
+        # cmake.parallel = False
+        self.run("strace -v -a 100 -s 1000 make test")
+        # cmake.test(args=["--", 'ARGS=--output-on-failure'])
 
     def package(self):
         cmake = CMake(self)
